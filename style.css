@@ -1,0 +1,254 @@
+/* ===========================================================
+   Ricardo — academic site
+   Palette: paper background, deep ink text, muted ochre accent
+   (a nod to old regional / cartographic survey documents —
+   fitting for regional-economics research on left-behind places)
+   =========================================================== */
+
+:root {
+  --bg: #f6f4ef;
+  --ink: #1d2b35;
+  --ink-soft: #55626c;
+  --accent: #8b6a3f;
+  --accent-soft: #e3d9c4;
+  --line: #ddd6c6;
+  --max-w: 44rem;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation: none !important; transition: none !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Source Serif 4", Georgia, "Times New Roman", serif;
+  font-size: 1.05rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--ink);
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover { color: var(--accent); }
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.site-header {
+  border-bottom: 1px solid var(--line);
+}
+
+.header-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 1.75rem 1.5rem 1.25rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.75rem 1.5rem;
+}
+
+.site-title {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.site-title a { text-decoration: none; }
+
+nav.site-nav {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+nav.site-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+nav.site-nav a {
+  text-decoration: none;
+  color: var(--ink-soft);
+  padding-bottom: 2px;
+  border-bottom: 1px solid transparent;
+}
+
+nav.site-nav a:hover,
+nav.site-nav a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+main {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding: 3rem 1.5rem 5rem;
+}
+
+h1 {
+  font-size: 2.1rem;
+  line-height: 1.2;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin: 2.75rem 0 1.25rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+main > h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+.kicker {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  margin: 0 0 1.75rem;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: 7rem 1fr;
+  gap: 1.75rem;
+  align-items: start;
+  margin-bottom: 2.5rem;
+}
+
+.avatar {
+  width: 7rem;
+  height: 7rem;
+  border-radius: 4px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Source Serif 4", Georgia, serif;
+  font-size: 1.9rem;
+  font-weight: 600;
+}
+
+.bio p { margin: 0 0 1rem; }
+
+.contact-list {
+  list-style: none;
+  margin: 1.5rem 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.95rem;
+}
+
+.interests {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.interests li { margin-bottom: 0.35rem; }
+
+.paper {
+  margin-bottom: 2.25rem;
+  padding-bottom: 2.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.paper:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+
+.paper h3 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem;
+  line-height: 1.4;
+}
+
+.paper .byline {
+  font-style: italic;
+  color: var(--ink-soft);
+  margin: 0 0 0.2rem;
+  font-size: 0.98rem;
+}
+
+.paper .status {
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin: 0 0 0.75rem;
+}
+
+.paper details {
+  font-size: 0.98rem;
+}
+
+.paper summary {
+  cursor: pointer;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  list-style: none;
+}
+
+.paper summary::-webkit-details-marker { display: none; }
+
+.paper summary::before {
+  content: "Abstract  ";
+}
+
+.paper summary:hover { color: var(--accent); }
+
+.paper details[open] summary::before { content: "Abstract  "; }
+
+.paper .abstract {
+  margin: 0.6rem 0 0;
+  color: var(--ink);
+}
+
+.note {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--line);
+  padding: 1.5rem;
+  text-align: center;
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 34rem) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+  .avatar { width: 4.5rem; height: 4.5rem; font-size: 1.4rem; }
+  h1 { font-size: 1.7rem; }
+  .header-inner { flex-direction: column; align-items: flex-start; }
+}
