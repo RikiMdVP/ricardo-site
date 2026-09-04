@@ -1,5 +1,5 @@
 /* ===========================================================
-   Ricardo — academic site
+   Ricardo Martínez de Vega Perancho — academic site
    Palette: paper background, deep ink text, muted ochre accent
    (a nod to old regional / cartographic survey documents —
    fitting for regional-economics research on left-behind places)
@@ -13,6 +13,19 @@
   --accent-soft: #e3d9c4;
   --line: #ddd6c6;
   --max-w: 44rem;
+}
+
+/* Dark mode: same paper/ink logic, inverted. Si no lo quieres,
+   borra este bloque entero y el sitio queda exactamente igual. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14191d;
+    --ink: #e8e4da;
+    --ink-soft: #9aa4ad;
+    --accent: #c9a26a;
+    --accent-soft: #2b3238;
+    --line: #2e363d;
+  }
 }
 
 * { box-sizing: border-box; }
@@ -52,6 +65,25 @@ summary:focus-visible {
   outline-offset: 3px;
 }
 
+/* Skip link: hidden until focused with the keyboard */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--bg);
+  color: var(--ink);
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--line);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.9rem;
+  z-index: 10;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+}
+
 .site-header {
   border-bottom: 1px solid var(--line);
 }
@@ -84,6 +116,7 @@ nav.site-nav {
 nav.site-nav ul {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
   gap: 1.5rem;
   margin: 0;
   padding: 0;
@@ -183,6 +216,26 @@ main > h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
 
 .interests li { margin-bottom: 0.35rem; }
 
+/* Lists on the CV page: no bullets, one entry per block */
+.cv-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cv-list li { margin-bottom: 0.6rem; }
+
+/* Compact list inside a card (seminars on the teaching page) */
+.plain-list {
+  list-style: none;
+  margin: 0.4rem 0 0;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+}
+
+.plain-list li { margin-bottom: 0.25rem; }
+
 .paper {
   margin-bottom: 2.25rem;
   padding-bottom: 2.25rem;
@@ -216,23 +269,32 @@ main > h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
   font-size: 0.98rem;
 }
 
+/* "Abstract" is real text in the HTML; the +/− is only decoration */
 .paper summary {
   cursor: pointer;
   font-family: "Inter", system-ui, sans-serif;
   font-size: 0.88rem;
   color: var(--ink-soft);
   list-style: none;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
 }
 
 .paper summary::-webkit-details-marker { display: none; }
 
 .paper summary::before {
-  content: "Abstract  ";
+  content: "+";
+  color: var(--accent);
+  font-size: 0.95rem;
+  line-height: 1;
+  width: 0.8em;
+  text-align: center;
 }
 
-.paper summary:hover { color: var(--accent); }
+.paper details[open] summary::before { content: "\2212"; }
 
-.paper details[open] summary::before { content: "Abstract  "; }
+.paper summary:hover { color: var(--accent); }
 
 .paper .abstract {
   margin: 0.6rem 0 0;
@@ -260,4 +322,14 @@ main > h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
   .avatar { width: 9rem; height: 9rem; font-size: 1.4rem; }
   h1 { font-size: 1.7rem; }
   .header-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* Printing the CV page should produce something readable */
+@media print {
+  :root { --bg: #fff; --ink: #000; --ink-soft: #333; --accent: #000; --line: #999; }
+  .site-nav, .skip-link, .site-footer { display: none; }
+  body { font-size: 11pt; }
+  main { max-width: none; padding: 0; }
+  .paper details { display: block; }
+  a { text-decoration: none; }
 }
