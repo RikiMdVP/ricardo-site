@@ -141,6 +141,10 @@ main {
   padding: 3rem 1.5rem 5rem;
 }
 
+/* Evita palabras sueltas colgando al final de titulos y parrafos */
+h1, h2, .paper h3 { text-wrap: balance; }
+p, .abstract { text-wrap: pretty; }
+
 h1 {
   font-size: 2.1rem;
   line-height: 1.2;
@@ -157,6 +161,13 @@ h2 {
 }
 
 main > h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
+/* En el CV el espacio en blanco ya separa las secciones: sin reglas */
+.cv-page h2 {
+  border-top: none;
+  padding-top: 0;
+  margin-top: 2.25rem;
+}
 
 .kicker {
   font-family: "Inter", system-ui, sans-serif;
@@ -261,7 +272,7 @@ main > h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
 .paper .status {
   font-family: "Inter", system-ui, sans-serif;
   font-size: 0.85rem;
-  color: var(--accent);
+  color: var(--ink-soft);
   margin: 0 0 0.75rem;
 }
 
