@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rikimdvp.github.io/ricardo-site/sitemap.xml
